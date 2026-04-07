@@ -1,13 +1,31 @@
+const stars = Array.from({ length: 400 }, (_, i) => ({
+  id: i,
+  size: Math.random() * 3 + 0.9,
+  top: Math.random() * 100,
+  left: Math.random() * 100,
+  opacity: Math.random() * 0.7 + 0.2,
+}));
 export default function KnowledgeRepo() {
   return (
-    <div className="
-      min-h-screen text-slate-200
-      bg-slate-950
-      bg-[radial-gradient(circle,rgba(226,232,240,0.6)_1px,transparent_0)]
-      bg-[length:38px_38px]
-      bg-[position:0_0]
-      overflow-x-hidden
-    ">
+    <div className="relative min-h-screen overflow-x-hidden bg-slate-950 text-slate-200">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute inset-[-10%] animate-starfieldRotate origin-center">
+          {stars.map((star) => (
+            <span
+              key={star.id}
+              className="absolute rounded-full bg-cyan-300"
+              style={{
+                width: `${star.size}px`,
+                height: `${star.size}px`,
+                top: `${star.top}%`,
+                left: `${star.left}%`,
+                opacity: star.opacity,
+                boxShadow: "0 0 6px rgba(40, 231, 231, 0.35)",
+              }}
+            />
+          ))}
+        </div>
+      </div>
       <main className="max-w-[1200px] mx-auto pb-20 pt-20">
         {/* HERO */}
         <section className="px-10 pt-[100px] pb-[120px] pl-[90px]">
@@ -295,11 +313,11 @@ export default function KnowledgeRepo() {
         {/* CTA */}
         <section className="px-10 pt-10 pb-0">
           <div className="mx-auto mt-[10px] max-w-[900px] rounded-[20px] border border-indigo-800/90 bg-[radial-gradient(circle_at_top,#0f172a_0,#020617_70%)] px-8 pt-[50px] pb-8 text-center shadow-[0_18px_50px_rgba(15,23,42,0.9)]">
-            <div className="mb-[18px] grid grid-cols-2 justify-center gap-[6px]">
-              <span className="dot w-2 h-2 rounded-full bg-cyan-400" />
-              <span className="dot w-2 h-2 rounded-full bg-cyan-400" />
-              <span className="dot w-2 h-2 rounded-full bg-cyan-400" />
-              <span className="dot w-2 h-2 rounded-full bg-cyan-400" />
+            <div className="mb-[18px] grid w-fit grid-cols-2 justify-center gap-[6px] mx-auto">
+              <span className="dot w-4 h-4 rounded-full bg-cyan-400" />
+              <span className="dot w-4 h-4 rounded-full bg-cyan-400" />
+              <span className="dot w-4 h-4 rounded-full bg-cyan-400" />
+              <span className="dot w-4 h-4 rounded-full bg-cyan-400" />
             </div>
             <h2 className="mb-2 text-[20px] uppercase tracking-[0.08em]">
               Contribute to the Repo
